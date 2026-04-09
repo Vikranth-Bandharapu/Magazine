@@ -221,3 +221,75 @@ body.fade-out{
   color:#fff;
   letter-spacing:5px;
 }
+/* 📱 MOBILE FIX */
+@media(max-width:768px){
+
+/* NAVBAR */
+.navbar{
+  padding:10px 15px;
+}
+
+.logo img{
+  width:100px;
+}
+
+/* HERO */
+.hero{
+  height:80vh;
+}
+
+.content h1{
+  font-size:28px;
+}
+
+.content p{
+  font-size:14px;
+}
+
+.content button{
+  padding:10px 20px;
+  font-size:14px;
+}
+
+/* GRID FIX */
+.news-grid{
+  grid-template-columns:1fr !important;
+}
+
+/* CARDS */
+.news-card img{
+  height:160px;
+}
+
+/* SECTION */
+.pro-news-section{
+  padding:30px 15px;
+}
+
+/* FEATURED GRID */
+.featured-grid{
+  grid-template-columns:1fr !important;
+}
+
+/* SIDEBAR (dashboard mobile) */
+.sidebar{
+  z-index:1000;
+  height:100vh;
+}
+
+/* TOPBAR */
+.topbar{
+  flex-direction:column;
+  gap:10px;
+}
+
+/* FOOTER */
+.footer{
+  font-size:12px;
+  padding:10px;
+}
+}
+img{
+  max-width:100%;
+  height:auto;
+}
