@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+/* BODY */
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+overflow:hidden;
+color:#fff;
+}
+
+/* PARTICLES */
+.particle{
+position:absolute;
+width:8px;
+height:8px;
+background:#fff;
+border-radius:50%;
+opacity:0.3;
+animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+}
+
+/* GLASS BOX */
+.container{
+text-align:center;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
+z-index:2;
+}
+
+/* 404 TEXT */
+.container h1{
+font-size:120px;
+background:linear-gradient(90deg,#ff3b3f,#ff7a18);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 10px #ff3b3f);}
+to{filter:drop-shadow(0 0 30px #ff7a18);}
+}
+
+/* TEXT */
+.container h2{
+font-size:28px;
+margin:10px 0;
+}
+
+.container p{
+color:#ccc;
+margin-bottom:25px;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+padding:12px 30px;
+border-radius:30px;
+background:#ff3b3f;
+color:#fff;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#ff7a18;
+transform:scale(1.1);
+}
+
+/* COUNTDOWN */
+.countdown{
+margin-top:15px;
+font-size:14px;
+color:#aaa;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+.container h1{
+font-size:80px;
+}
+}
+
+</style>
+</head>
+
+<body>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-bar"></div>
+  </div>
+  <p>LOADING</p>
+</div>
+<!-- PARTICLES -->
+<script>
+for(let i=0;i<40;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="container">
+  <h1>404</h1>
+  <h2>Page Not Found</h2>
+  <p>The page you are looking for doesn't exist.</p>
+
+  <a href="index.html" class="btn">Go Home</a>
+
+  <div class="countdown">Redirecting in <span id="time">5</span>s...</div>
+</div>
+
+<script>
+let time=5;
+let timer=setInterval(()=>{
+  time--;
+  document.getElementById("time").innerText=time;
+  if(time==0){
+    clearInterval(timer);
+    window.location.href="index.html";
+  }
+},1000);
+</script>
+<script>
+window.addEventListener("load", function(){
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    
+    setTimeout(()=>{
+      loader.style.display = "none";
+      document.body.classList.add("loaded");
+    },500);
+
+  }, 800);
+});
+</script>
+<script>
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    // skip external or same page
+    if(href && href.includes(".html")){
+      e.preventDefault();
+
+      document.body.style.opacity = "0";
+
+      setTimeout(()=>{
+        window.location.href = href;
+      },400);
+    }
+  });
+});
+</script>
+</body>
+</html>

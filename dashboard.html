@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-bar"></div>
+  </div>
+  <p>LOADING</p>
+</div>
+<div class="navbar">
+ <!-- LOGO -->
+     <a href="dashboard.html" class="logo">
+    <img src="images/logo.webp" alt="logo">
+</a>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU -->
+    <ul class="nav-links" id="navLinks">
+
+        <li class="dropdown">
+            <a href="index.html" onclick="toggleDropdown(event)">Home ▾</a>
+            <ul class="dropdown-content" id="dropdown">
+                <li><a href="home1.html">Home 2</a></li>
+            </ul>
+        </li>
+ <li><a href="about.html">About Us</a></li>
+        <li><a href="category.html">Category</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="signin.html">Sign In</a></li>
+    </ul>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<i class="fa fa-bars" onclick="toggleSidebar()"></i>
+
+<style>
+
+/* GLOBAL */
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6fa;
+
+}
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+}
+.sidebar{
+  width:215px;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding:20px;
+  height:100vh;   /* 🔥 FULL HEIGHT */
+  position:fixed;
+  top:70px;       /* 🔥 below navbar */
+  left:0;
+}
+
+.sidebar h2{
+  margin-bottom:25px;
+}
+.sidebar a{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  color:#555;
+  text-decoration:none;
+  border-radius:6px;
+}
+.sidebar a.active,
+.sidebar a:hover{
+  background:#f1f5f9;
+}
+.main{
+  margin-left:230px;
+  padding-top:70px;   /* 🔥 push content below navbar */
+  width:calc(100% - 230px);
+}
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+body{
+  transition:0.3s;
+}
+.topbar{
+  background:#fff;
+  padding:12px 20px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+}
+.search input{
+  padding:8px;
+  border:1px solid #ddd;
+  border-radius:6px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  padding:20px;
+}
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:10px;
+  border:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+}
+.icon{
+  padding:10px;
+  border-radius:8px;
+  color:#fff;
+}
+.blue{background:#3b82f6;}
+.green{background:#22c55e;}
+.orange{background:#f59e0b;}
+.red{background:#ef4444;}
+
+/* ANALYTICS */
+.analytics{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  padding:0 20px 20px;
+}
+.chart-box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  border:1px solid #eee;
+}
+
+/* EXTRA */
+.extra{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  padding:0 20px 20px;
+}
+.box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  border:1px solid #eee;
+}
+
+/* TABLE */
+.table-section{
+  padding:20px;
+}
+table{
+  width:100%;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:10px;
+  border-collapse:collapse;
+}
+th, td{
+  padding:12px;
+  border-bottom:1px solid #eee;
+}
+.status{
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+.published{background:#d1fae5;color:#065f46;}
+.draft{background:#fee2e2;color:#991b1b;}
+
+/* RESPONSIVE */
+@media(max-width:992px){
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .analytics{grid-template-columns:1fr;}
+  .extra{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+}
+.topbar{
+  width:100%;
+  box-sizing:border-box;
+}
+
+@media(max-width:768px){
+  .sidebar{
+    position:absolute;
+    left:-230px;
+  }
+  .sidebar.active{
+    left:0;
+  }
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+}
+.footer{
+  text-align:center;
+  padding:12px;
+  font-size:14px;
+  color:#777;
+  background:lab(16.17% 2.31 0.84);
+  border-top:1px solid #eee;
+  margin-top:20px;
+}
+.main{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.footer{
+  margin-top:auto;
+}
+</style>
+
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Stackly</h2>
+  <a class="active"><i class="fa fa-home"></i> Dashboard</a>
+  <a><i class="fa fa-newspaper"></i> Posts</a>
+  <a><i class="fa fa-user"></i> Users</a>
+  <a><i class="fa fa-cog"></i> Settings</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="search">
+      <input type="text" placeholder="Search...">
+    </div>
+    <i class="fa fa-user-circle"></i>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards">
+    <div class="card">
+      <div><h3>120</h3><p>Total Posts</p></div>
+      <div class="icon blue"><i class="fa fa-file"></i></div>
+    </div>
+    <div class="card">
+      <div><h3>80</h3><p>Published</p></div>
+      <div class="icon green"><i class="fa fa-check"></i></div>
+    </div>
+    <div class="card">
+      <div><h3>40</h3><p>Drafts</p></div>
+      <div class="icon orange"><i class="fa fa-edit"></i></div>
+    </div>
+    <div class="card">
+      <div><h3>5000</h3><p>Visitors</p></div>
+      <div class="icon red"><i class="fa fa-users"></i></div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="analytics">
+    <div class="chart-box">
+      <h4>Visitors Overview</h4>
+      <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart-box">
+      <h4>Posts Growth</h4>
+      <canvas id="chart2"></canvas>
+    </div>
+  </div>
+
+  <!-- EXTRA -->
+  <div class="extra">
+    <div class="box">
+      <h4>Recent Activity</h4>
+      <p>✔ New post published</p>
+      <p>✔ User registered</p>
+      <p>✔ Comment added</p>
+    </div>
+
+    <div class="box">
+      <h4>Top Categories</h4>
+      <p>News - 45</p>
+      <p>Health - 30</p>
+      <p>Travel - 20</p>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h3>Recent Posts</h3>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Health Tips</td>
+        <td>Health</td>
+        <td><span class="status published">Published</span></td>
+      </tr>
+      <tr>
+        <td>Travel Guide</td>
+        <td>Travel</td>
+        <td><span class="status draft">Draft</span></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<div class="footer">
+  © 2026 Stackly. All Rights Reserved.
+</div>
+<script>
+new Chart(document.getElementById("chart1"),{
+  type:'line',
+  data:{
+    labels:["Jan","Feb","Mar","Apr"],
+    datasets:[{label:"Visitors",data:[10,20,15,30]}]
+  }
+});
+
+new Chart(document.getElementById("chart2"),{
+  type:'bar',
+  data:{
+    labels:["News","Health","Travel"],
+    datasets:[{label:"Posts",data:[30,20,15]}]
+  }
+});
+</script>
+<script>
+function toggleSidebar(){
+  document.querySelector('.sidebar').classList.toggle('active');
+}
+</script>
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+/* close dropdown when clicking outside */
+window.onclick = function(e) {
+    if (!e.target.closest(".dropdown")) {
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+</script>
+<script>
+window.addEventListener("load", function(){
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    
+    setTimeout(()=>{
+      loader.style.display = "none";
+      document.body.classList.add("loaded");
+    },500);
+
+  }, 800);
+});
+</script>
+<script>
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    // skip external or same page
+    if(href && href.includes(".html")){
+      e.preventDefault();
+
+      document.body.style.opacity = "0";
+
+      setTimeout(()=>{
+        window.location.href = href;
+      },400);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* BACKGROUND */
+body{
+  margin:0;
+  font-family:Arial;
+  height:100vh;
+  background:linear-gradient(135deg,#0f3460,#16213e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CARD */
+.login-card{
+  background:#fff;
+  padding:40px;
+  width:360px;
+  border-radius:12px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+  text-align:center;
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.login-card h2{
+  margin-bottom:25px;
+}
+
+/* INPUT */
+.input-box{
+  position:relative;
+  margin-bottom:20px;
+}
+
+.input-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  outline:none;
+}
+
+.input-box label{
+  position:absolute;
+  top:12px;
+  left:12px;
+  color:#777;
+  font-size:14px;
+  transition:0.3s;
+}
+
+/* FLOAT LABEL */
+.input-box input:focus + label,
+.input-box input:valid + label{
+  top:-8px;
+  font-size:12px;
+  color:#ff3b3f;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  background:#ff3b3f;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:15px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff5a5f;
+  transform:scale(1.05);
+}
+
+/* ERROR */
+#error{
+  color:red;
+  font-size:14px;
+  margin-top:10px;
+}
+
+/* ICON */
+.icon{
+  font-size:35px;
+  margin-bottom:10px;
+  color:#ff3b3f;
+}
+
+</style>
+</head>
+<body>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-bar"></div>
+  </div>
+  <p>LOADING</p>
+</div>
+<div class="login-card">
+
+  <div class="icon">
+    <i class="fa fa-user-circle"></i>
+  </div>
+
+  <h2>Login</h2>
+
+  <!-- USERNAME -->
+  <div class="input-box">
+    <input type="text" id="username" required>
+    <label>Username</label>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="input-box">
+    <input type="email" id="email" required>
+    <label>Email</label>
+  </div>
+
+  <!-- PASSWORD -->
+  <div class="input-box">
+    <input type="password" id="password" required>
+    <label>Password</label>
+  </div>
+
+  <button onclick="login()">Login</button>
+
+  <p id="error"></p>
+
+</div>
+
+<script>
+function login(){
+  let user = document.getElementById("username").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value.trim();
+
+  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+  // VALIDATIONS
+  if(user === "" || email === "" || pass === ""){
+    document.getElementById("error").innerText = "All fields are required!";
+    return;
+  }
+
+  if(!emailPattern.test(email)){
+    document.getElementById("error").innerText = "Enter valid email!";
+    return;
+  }
+
+  if(pass.length < 4){
+    document.getElementById("error").innerText = "Password must be at least 4 characters!";
+    return;
+  }
+
+  // ✅ SUCCESS → DASHBOARD
+  window.location.href = "dashboard.html";
+}
+</script>
+<script>
+window.addEventListener("load", function(){
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    
+    setTimeout(()=>{
+      loader.style.display = "none";
+      document.body.classList.add("loaded");
+    },500);
+
+  }, 800);
+});
+</script>
+<script>
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    // skip external or same page
+    if(href && href.includes(".html")){
+      e.preventDefault();
+
+      document.body.style.opacity = "0";
+
+      setTimeout(()=>{
+        window.location.href = href;
+      },400);
+    }
+  });
+});
+</script>
+</body>
+</html>

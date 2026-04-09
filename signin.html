@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* BACKGROUND */
+body{
+  margin:0;
+  font-family:Arial;
+  height:100vh;
+  background:linear-gradient(135deg,#0f3460,#16213e,#1a1a2e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CARD */
+.login-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  width:360px;
+  border-radius:15px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  text-align:center;
+  color:#fff;
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.login-card h2{
+  margin-bottom:25px;
+}
+
+/* INPUT */
+.input-box{
+  position:relative;
+  margin-bottom:20px;
+}
+
+.input-box input{
+  width:100%;
+  padding:12px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:6px;
+  color:#fff;
+  outline:none;
+}
+
+.input-box label{
+  position:absolute;
+  top:12px;
+  left:12px;
+  color:#ccc;
+  font-size:14px;
+  transition:0.3s;
+}
+
+/* FLOAT LABEL */
+.input-box input:focus + label,
+.input-box input:valid + label{
+  top:-8px;
+  font-size:12px;
+  color:#ff3b3f;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  background:linear-gradient(45deg,#ff3b3f,#ff6b6b);
+  border:none;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:15px;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 25px rgba(255,59,63,0.5);
+}
+
+/* ERROR */
+#error{
+  color:#ff6b6b;
+  font-size:14px;
+  margin-top:10px;
+}
+
+/* ICON */
+.icon{
+  font-size:35px;
+  margin-bottom:10px;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+</style>
+</head>
+<body>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-bar"></div>
+  </div>
+  <p>LOADING</p>
+</div>
+<div class="login-card">
+
+  <div class="icon">
+    <i class="fa fa-user-circle"></i>
+  </div>
+
+  <h2>Create Account</h2>
+
+  <!-- USERNAME -->
+  <div class="input-box">
+    <input type="text" id="username" required>
+    <label>Username</label>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="input-box">
+    <input type="email" id="email" required>
+    <label>Email</label>
+  </div>
+
+  <!-- PASSWORD -->
+  <div class="input-box">
+    <input type="password" id="password" required>
+    <label>Password</label>
+  </div>
+
+  <button onclick="signup()">Sign In</button>
+
+  <p id="error"></p>
+
+</div>
+
+<script>
+function signup(){
+  let user = document.getElementById("username").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value.trim();
+
+  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+  if(user === "" || email === "" || pass === ""){
+    document.getElementById("error").innerText = "All fields are required!";
+    return;
+  }
+
+  if(!emailPattern.test(email)){
+    document.getElementById("error").innerText = "Enter valid email!";
+    return;
+  }
+
+  if(pass.length < 4){
+    document.getElementById("error").innerText = "Password must be at least 4 characters!";
+    return;
+  }
+
+  // ✅ SUCCESS → REDIRECT
+  window.location.href = "login.html";
+}
+</script>
+<script>
+window.addEventListener("load", function(){
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    
+    setTimeout(()=>{
+      loader.style.display = "none";
+      document.body.classList.add("loaded");
+    },500);
+
+  }, 800);
+});
+</script>
+<script>
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    // skip external or same page
+    if(href && href.includes(".html")){
+      e.preventDefault();
+
+      document.body.style.opacity = "0";
+
+      setTimeout(()=>{
+        window.location.href = href;
+      },400);
+    }
+  });
+});
+</script>
+</body>
+</html>

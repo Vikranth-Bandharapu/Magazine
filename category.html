@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-bar"></div>
+  </div>
+  <p>LOADING</p>
+</div>
+<div class="navbar">
+ <!-- LOGO -->
+     <a href="category.html" class="logo">
+    <img src="images/logo.webp" alt="logo">
+</a>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU -->
+    <ul class="nav-links" id="navLinks">
+
+        <li class="dropdown">
+            <a href="index.html" onclick="toggleDropdown(event)">Home ▾</a>
+            <ul class="dropdown-content" id="dropdown">
+                <li><a href="home1.html">Home 2</a></li>
+            </ul>
+        </li>
+
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="category.html">Category</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="signin.html">Sign In</a></li>
+
+    </ul>
+</div>
+<!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- AOS for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Custom CSS -->
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:15px 50px; background:#222; color:#fff; }
+    header .logo { width:120px; }
+    header nav ul { list-style:none; display:flex; gap:25px; margin:0; padding:0; }
+    header nav ul li a { color:#fff; text-decoration:none; font-weight:500; transition:0.3s; }
+    header nav ul li a:hover { color: #ff4d4d; }
+.category-section {
+  padding: 80px 5%;
+  position: relative;
+  background: #fff;
+  overflow: visible;
+}
+.sticky-head {
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+}
+/* HEADING ANIMATION */
+.head-content {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.head-content h2 {
+  font-size: 36px;
+  color: red;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.4s;
+}
+
+/* underline animation */
+.head-content .borde {
+  width: 0;
+  height: 4px;
+  background: red;
+  margin: 10px auto;
+  transition: 0.5s;
+}
+
+.head-content:hover .borde {
+  width: 100px;
+}
+
+/* STICKY EFFECT (go up like reference) */
+.sticky-head {
+  position: sticky;
+  top: 70px;
+  background: #fff;
+  z-index: 10;
+  padding: 10px 0;
+}
+
+/* SCROLL CARDS */
+.category-scroll {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  scroll-behavior: smooth;
+}
+
+/* CARDS */
+.category-card {
+  flex: 0 0 300px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.4s;
+  position: relative;
+}
+
+/* HOVER EFFECT */
+.category-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+
+/* IMAGE ZOOM */
+.category-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+/* BUTTON */
+.category-card .cta-button {
+  display: block;
+  margin: 0 15px 20px;
+  padding: 10px 0;
+  text-align: center;
+  background: linear-gradient(45deg, #ff4d4d, #ff0000);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.category-card .cta-button:hover {
+  background: black;
+}
+
+/* SCROLLBAR HIDE */
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+.category-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+    /* Scrollbar hidden */
+    .category-scroll::-webkit-scrollbar { display:none; }
+    .category-scroll { -ms-overflow-style:none; scrollbar-width:none; }
+
+    @media (max-width:768px) {
+      header { flex-direction:column; align-items:flex-start; gap:10px; }
+      .category-card { flex:0 0 250px; }
+    }
+    .sticky-head {
+  position: sticky;
+  top: 70px;
+  background: #fff;
+  z-index: 100;
+  padding: 10px 0;
+  transition: 0.3s;
+}
+
+.sticky-head.scrolled {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+  </style>
+
+
+
+
+<main>
+  <section class="category-section">
+   <div class="head-content sticky-head">
+  <h2>Explore Categories</h2>
+  <div class="borde"></div>
+</div>
+    <div class="category-scroll">
+      <!-- News -->
+      <div class="category-card" data-aos="fade-right">
+        <img src="images/news4_11zon_11zon.webp" alt="News">
+        <h3>News</h3>
+        <p>Latest political, economic, and world news updates.</p>
+        <a href="news.html" class="cta-button">Explore News</a>
+      </div>
+
+      <!-- Health -->
+      <div class="category-card" data-aos="fade-up">
+        <img src="images/health visual data_11zon_11zon_11zon.webp" alt="Health">
+        <h3>Health</h3>
+        <p>Health tips, wellness guides, and medical news.</p>
+        <a href="health.html" class="cta-button">Explore Health</a>
+      </div>
+
+      <!-- Sports -->
+      <div class="category-card" data-aos="fade-up">
+        <img src="images/sports.webp" alt="Sports">
+        <h3>Sports</h3>
+        <p>Cricket, football, Olympics, and other sports updates.</p>
+        <a href="sports.html" class="cta-button">Explore Sports</a>
+      </div>
+
+      <!-- Travel -->
+      <div class="category-card" data-aos="fade-left">
+        <img src="images/travel 2.webp" alt="Travel">
+        <h3>Travel</h3>
+        <p>Tourism, destinations, and travel experiences worldwide.</p>
+        <a href="travel.html" class="cta-button">Explore Travel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Articles Section with Swiper -->
+<section class="featured-articles" style="padding:50px 5%;">
+  <div class="head-content" style="text-align:center; margin-bottom:40px;">
+    <h2 style="color:red;">Featured Articles</h2>
+    <div class="borde" style="width:80px; height:3px; background:red; margin:0 auto;"></div>
+  </div>
+
+  <!-- Swiper Container -->
+  <div class="swiper featuredSwiper">
+    <div class="swiper-wrapper">
+
+      <!-- Article Card 1 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/air india_11zon_11zon.webp" alt="Travel" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">Air India seeks $1.14 billion lifeline from SIA and Tata</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">Reuters • 3 days ago</p>
+          <a href="travel.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article Card 2 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/newsss.webp" alt="News" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">Ford to make new engines in India with $370 million investment</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">Reuters • 3 days ago</p>
+          <a href="news.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article Card 3 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/download.jfif.webp" alt="News" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">India & US sign 10-year defence cooperation framework</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">Times of India • 2 days ago</p>
+          <a href="news.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article Card 4 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/travel5.webp" alt="Travel" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">2,790 Indians deported from US in 2025; crossings hit 4-year low</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">India Today • Today</p>
+          <a href="travel.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article Card 5 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/fitness_11zon_11zon.webp" alt="Health" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">‘Fit India 2.0’ campaign encourages citizens to adopt daily fitness routines</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">Economic Times • 3 days ago</p>
+          <a href="health.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+      <!-- Article Card 6 -->
+      <div class="swiper-slide article-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s;">
+        <img src="images/travel6.webp" alt="Travel" style="width:100%; height:200px; object-fit:cover;">
+        <div style="padding:15px;">
+          <h3 style="font-size:20px;">Kerala tourism sees highest visitor surge post-pandemic recovery</h3>
+          <p style="font-size:14px; color:#555; margin:10px 0;">Deccan Herald • Yesterday</p>
+          <a href="travel.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Swiper Navigation Buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+<!-- Trending / Latest News Section -->
+<section class="trending-news" style="padding:60px 5%; background:#f9f9f9;">
+  <div class="head-content" style="text-align:center; margin-bottom:50px;">
+    <h2 style="color:red;">Trending Now</h2>
+    <div class="borde" style="width:80px; height:3px; background:red; margin:0 auto;"></div>
+  </div>
+
+  <div class="trending-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;">
+
+    <!-- News Card 1 -->
+    <div class="news-card" data-aos="fade-up" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.4s; cursor:pointer;" 
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/army.webp" alt="Army Rescue" style="width:100%; height:180px; object-fit:cover;">
+      <div style="padding:15px;">
+        <h3 style="font-size:18px; font-weight:600;">Army and NDRF carry out massive flood rescue operations in Assam</h3>
+        <p style="font-size:14px; color:#555; margin:10px 0;"><strong>The Hindu</strong> • 5 days ago</p>
+        <a href="news.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+      </div>
+    </div>
+
+    <!-- News Card 2 -->
+    <div class="news-card" data-aos="fade-up" data-aos-delay="100" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.4s; cursor:pointer;"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/cancer.webp" alt="Cancer AI" style="width:100%; height:180px; object-fit:cover;">
+      <div style="padding:15px;">
+        <h3 style="font-size:18px; font-weight:600;">Indian researchers develop AI tool to detect early-stage cancer with 92% accuracy</h3>
+        <p style="font-size:14px; color:#555; margin:10px 0;"><strong>Times of India</strong> • 2 days ago</p>
+        <a href="health.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+      </div>
+    </div>
+
+    <!-- News Card 3 -->
+    <div class="news-card" data-aos="fade-up" data-aos-delay="200" style="background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.4s; cursor:pointer;"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/stresss.webp" alt="Mental Health" style="width:100%; height:180px; object-fit:cover;">
+      <div style="padding:15px;">
+        <h3 style="font-size:18px; font-weight:600;">National mental health campaign launched to combat rising stress and anxiety</h3>
+        <p style="font-size:14px; color:#555; margin:10px 0;"><strong>India Today</strong> • 2 days ago</p>
+        <a href="health.html" style="display:inline-block; padding:8px 15px; background:#ff4d4d; color:#fff; border-radius:8px; text-decoration:none; font-weight:500;">Read More</a>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+<!-- Explore Topics Section -->
+<section class="explore-topics" style="padding:60px 5%; background:#f9f9f9;">
+  <div style="text-align:center; margin-bottom:40px;">
+    <h2 style="color:red; font-size:32px;">Explore Popular Topics</h2>
+    <div style="width:60px; height:3px; background:red; margin:10px auto;"></div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    <!-- Topic 1 -->
+    <div data-aos="fade-up" style="flex:1 1 220px; max-width:250px; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition:0.4s;" 
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/new10.webp" style="width:100%; height:150px; object-fit:cover;">
+      <div style="padding:15px; background:#fff;">
+        <h3 style="margin:0; font-size:18px;">News</h3>
+        <p style="font-size:14px; color:#555;">Latest updates from India & world</p>
+      </div>
+    </div>
+
+    <!-- Topic 2 -->
+    <div data-aos="fade-up" data-aos-delay="100" style="flex:1 1 220px; max-width:250px; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition:0.4s;"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/healthhh.webp" style="width:100%; height:150px; object-fit:cover;">
+      <div style="padding:15px; background:#fff;">
+        <h3 style="margin:0; font-size:18px;">Health</h3>
+        <p style="font-size:14px; color:#555;">Tips & advice for a healthy life</p>
+      </div>
+    </div>
+
+    <!-- Topic 3 -->
+    <div data-aos="fade-up" data-aos-delay="200" style="flex:1 1 220px; max-width:250px; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition:0.4s;"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/sportss.webp" style="width:100%; height:150px; object-fit:cover;">
+      <div style="padding:15px; background:#fff;">
+        <h3 style="margin:0; font-size:18px;">Sports</h3>
+        <p style="font-size:14px; color:#555;">Updates on cricket, football & more</p>
+      </div>
+    </div>
+
+    <!-- Topic 4 -->
+    <div data-aos="fade-up" data-aos-delay="300" style="flex:1 1 220px; max-width:250px; border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition:0.4s;"
+         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/travel7.webp" style="width:100%; height:150px; object-fit:cover;">
+      <div style="padding:15px; background:#fff;">
+        <h3 style="margin:0; font-size:18px;">Travel</h3>
+        <p style="font-size:14px; color:#555;">Discover new destinations & adventures</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER START -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-wrapper">
+
+      <!-- LOGO -->
+      <div class="footer-col">
+        <img src="images/logo.webp" alt="Stackly Logo" class="footer-logo">
+        <p>
+           Magazine brings you latest news, health tips,
+          travel stories and sports updates.
+        </p>
+      </div>
+
+      <!-- LINKS -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="category.html">Category</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="footer-col">
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="404.html">News</a></li>
+          <li><a href="404.html">Health</a></li>
+          <li><a href="404.html">Sports</a></li>
+          <li><a href="404.html">Travel</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: info@stackly.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Location: India</p>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      © 2026 Stackly. All Rights Reserved.
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer-logo{
+  width:150px;
+  transition:0.3s;
+}
+
+.footer-logo:hover{
+  transform:scale(1.05);
+}
+  .footer-logo{
+  width:150px;   /* adjust size */
+  margin-bottom:10px;
+}
+.footer{
+  background:#111;
+  color:#ccc;
+  padding:60px 0 20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.footer-wrapper{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+
+.logo{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  color:#fff;
+  margin-bottom:15px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-col ul li{
+  margin-bottom:8px;
+}
+
+.footer-col ul li a{
+  text-decoration:none;
+  color:#ccc;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  color:#ff3b3f;
+}
+
+.footer-bottom{
+  border-top:1px solid #222;
+  margin-top:40px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-wrapper{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:500px){
+  .footer-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+<!-- FOOTER END -->
+<!-- AOS SCRIPT -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration:1000,
+  once:true
+});
+</script>
+
+<script>
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-out-cubic',
+    once: true,
+  });
+</script>
+<!-- Initialize AOS -->
+<script>
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-out-cubic',
+    once: true,
+  });
+</script>
+
+<!-- Swiper JS -->
+<script>
+  const swiper = new Swiper(".featuredSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 25,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
+</script>
+
+</main>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-out-cubic',
+    once: true
+  });
+</script>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+/* close dropdown when clicking outside */
+window.onclick = function(e) {
+    if (!e.target.closest(".dropdown")) {
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+window.addEventListener("scroll", function () {
+  const head = document.querySelector(".sticky-head");
+  head.classList.toggle("scrolled", window.scrollY > 100);
+});
+</script>
+<script>
+  document.querySelectorAll("a").forEach(link => {
+    if (link.innerText.includes("Explore") || link.innerText.includes("Read")) {
+      link.setAttribute("href", "404.html");
+    }
+  });
+</script>
+<script>
+window.addEventListener("load", function(){
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    
+    setTimeout(()=>{
+      loader.style.display = "none";
+      document.body.classList.add("loaded");
+    },500);
+
+  }, 800);
+});
+</script>
+<script>
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    // skip external or same page
+    if(href && href.includes(".html")){
+      e.preventDefault();
+
+      document.body.style.opacity = "0";
+
+      setTimeout(()=>{
+        window.location.href = href;
+      },400);
+    }
+  });
+});
+</script>
+</body>
+</html>
