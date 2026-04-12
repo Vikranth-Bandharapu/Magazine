@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gov Portal</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+</head>
+<body>
+
+<div class="navbar">
+<!-- LOGO -->
+    <a href="travel.html" class="logo">
+        <img src="images/logo.webp" alt="logo">
+    </a>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU -->
+    <ul class="nav-links" id="navLinks">
+
+        <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">Home ▾</a>
+            <ul class="dropdown-content" id="dropdown">
+                <li><a href="home1.html">Home 1</a></li>
+            </ul>
+        </li>
+
+        <li><a href="about.html">About Us</a></li>
+        <li class="dropdown">
+  <a href="category.html
+  " onclick="toggleCategory(event)">Category ▾</a>
+
+  <ul class="dropdown-content" id="categoryDropdown">
+    <li><a href="news.html"><i class="fa fa-newspaper"></i> News</a></li>
+<li><a href="travel.html"><i class="fa fa-plane"></i> Travel</a></li>
+<li><a href="health.html"><i class="fa fa-heart"></i> Health</a></li>
+<li><a href="sports.html"><i class="fa fa-futbol"></i> Sports</a></li>
+  </ul>
+</li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="signin.html">Sign In</a></li>
+
+    </ul>
+</div>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#111;
+color:#fff;
+}
+
+.logo img{width:120px;}
+
+.nav-links{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.nav-links a{
+color:#fff;
+text-decoration:none;
+}
+
+/* HERO */
+.hero{
+height:70vh;
+background:url('./images/travel7.webp') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+position:relative;
+color:#fff;
+text-align:center;
+}
+
+.hero-content h1{
+font-size:50px;
+}
+
+.hero-content p{
+margin-top:10px;
+font-size:18px;
+}
+
+/* SECTION */
+.news-section{
+padding:60px 40px;
+background:#f8f9fa;
+}
+
+.section-title{
+text-align:center;
+font-size:36px;
+color:#00b894;
+margin-bottom:40px;
+}
+
+/* GRID */
+.news-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+margin-bottom:30px;
+}
+
+/* CARD */
+.big-card{
+background:#fff;
+border-radius:15px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+transition:0.5s;
+position:relative;
+overflow:hidden;
+}
+
+.big-card:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 50px rgba(0,0,0,0.2);
+}
+
+/* IMAGE */
+.img-box{
+position:relative;
+overflow:hidden;
+border-radius:10px;
+}
+
+.img-box img{
+width:100%;
+height:250px;
+object-fit:cover;
+transition:0.5s;
+}
+
+.big-card:hover img{
+transform:scale(1.1);
+}
+
+/* OVERLAY */
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+opacity:0;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+transition:0.4s;
+}
+
+.overlay i{
+background:#00b894;
+color:#fff;
+padding:10px;
+border-radius:50%;
+}
+
+.img-box:hover .overlay{
+opacity:1;
+}
+
+/* BADGE */
+.badge{
+position:absolute;
+top:15px;
+left:15px;
+background:#00b894;
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+/* CONTENT */
+.card-content h2{
+margin:15px 0;
+color:#00b894;
+}
+
+.card-content p{
+color:#444;
+line-height:1.6;
+}
+
+.meta,.stats{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+margin:10px 0;
+color:#666;
+}
+
+/* BUTTON */
+.read-btn{
+display:inline-block;
+padding:8px 18px;
+background:#00b894;
+color:#fff;
+border-radius:20px;
+text-decoration:none;
+margin-top:10px;
+}
+
+.read-btn:hover{
+background:#019875;
+}
+
+/* FOOTER */
+.footer{
+background:#111;
+color:#ccc;
+padding:40px;
+text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.news-row{
+grid-template-columns:1fr;
+}
+.hero-content h1{
+font-size:30px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content" data-aos="fade-up">
+    <h1>✈️ Explore Travel</h1>
+    <p>Discover destinations, adventures & travel experiences</p>
+  </div>
+</section>
+
+<!-- SECTION -->
+<section class="news-section">
+
+<h1 class="section-title">Top Travel Destinations</h1>
+
+<!-- ROW 1 -->
+<div class="news-row">
+
+<div class="big-card" data-aos="fade-right">
+<div class="img-box">
+<img src="images/Travel12_11zon_11zon.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Hidden Places in India</h2>
+<p>Explore Spiti Valley, Ziro Valley & Gokarna for peaceful travel experiences.</p>
+<div class="meta"><span>Admin</span><span>2 days ago</span></div>
+<div class="stats"><span>2.5k Views</span><span>210 Comments</span></div>
+<a href="404.html" class="read-btn">Explore</a>
+</div>
+</div>
+
+<div class="big-card" data-aos="fade-left">
+<div class="img-box">
+<img src="images/travel5.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Goa Night Life</h2>
+<p>Enjoy beaches, parties, and vibrant nightlife in Goa.</p>
+<div class="meta"><span>Admin</span><span>3 days ago</span></div>
+<div class="stats"><span>3k Views</span><span>150 Comments</span></div>
+<a href="#" class="read-btn">Explore</a>
+</div>
+</div>
+
+</div>
+
+<!-- ROW 2 -->
+<div class="news-row">
+
+<div class="big-card" data-aos="zoom-in">
+<div class="img-box">
+<img src="images/travel8.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Kerala Backwaters</h2>
+<p>Relax in houseboats and enjoy scenic backwaters.</p>
+<div class="meta"><span>Admin</span><span>1 week ago</span></div>
+<div class="stats"><span>2k Views</span><span>100 Comments</span></div>
+<a href="#" class="read-btn">Explore</a>
+</div>
+</div>
+
+<div class="big-card" data-aos="flip-left">
+<div class="img-box">
+<img src="images/travel 2.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Ladakh Road Trip</h2>
+<p>Adventure ride through mountains and stunning landscapes.</p>
+<div class="meta"><span>Admin</span><span>5 days ago</span></div>
+<div class="stats"><span>4k Views</span><span>300 Comments</span></div>
+<a href="#" class="read-btn">Explore</a>
+</div>
+</div>
+
+</div>
+
+<!-- ROW 3 -->
+<div class="news-row">
+
+<div class="big-card" data-aos="fade-up">
+<div class="img-box">
+<img src="images/travel6.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Andaman Islands</h2>
+<p>Crystal clear water and beach paradise experience.</p>
+<div class="meta"><span>Admin</span><span>6 days ago</span></div>
+<div class="stats"><span>3.5k Views</span><span>220 Comments</span></div>
+<a href="#" class="read-btn">Explore</a>
+</div>
+</div>
+
+<div class="big-card" data-aos="zoom-in-up">
+<div class="img-box">
+<img src="images/travel.webp">
+<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<span class="badge">Travel</span>
+</div>
+<div class="card-content">
+<h2>Coorg Road Trip</h2>
+<p>Enjoy green hills, coffee estates & peaceful vibes.</p>
+<div class="meta"><span>Admin</span><span>2 days ago</span></div>
+<div class="stats"><span>1.8k Views</span><span>90 Comments</span></div>
+<a href="#" class="read-btn">Explore</a>
+</div>
+</div>
+
+</div>
+
+</section>
+<!-- FOOTER START -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-wrapper">
+
+      <!-- LOGO -->
+      <div class="footer-col">
+        <img src="images/logo.webp" alt="Stackly Logo" class="footer-logo">
+        <p>
+           Magazine brings you latest news, health tips,
+          travel stories and sports updates.
+        </p>
+      </div>
+
+      <!-- LINKS -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="category.html">Category</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="footer-col">
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="news.html">News</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="sports.html">Sports</a></li>
+          <li><a href="travel.html">Travel</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: info@stackly.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Location: India</p>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      <p> © 2026 Stackly. All Rights Reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer-logo{
+  width:150px;
+  transition:0.3s;
+}
+
+.footer-logo:hover{
+  transform:scale(1.05);
+}
+  .footer-logo{
+  width:150px;   /* adjust size */
+  margin-bottom:10px;
+}
+.footer{
+  background:#111;
+  color:#ccc;
+  padding:60px 0 20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.footer-wrapper{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+
+.logo{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  color:#fff;
+  margin-bottom:15px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-col ul li{
+  margin-bottom:8px;
+}
+
+.footer-col ul li a{
+  text-decoration:none;
+  color:#ccc;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  color:#ff3b3f;
+}
+
+.footer-bottom{
+  border-top:1px solid #222;
+  margin-top:40px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-wrapper{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:500px){
+  .footer-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
+</script>
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+/* close dropdown when clicking outside */
+window.onclick = function(e) {
+    if (!e.target.closest(".dropdown")) {
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+</script>
+
+</body>
+</html>

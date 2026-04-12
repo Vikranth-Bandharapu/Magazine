@@ -23,20 +23,29 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+background:linear-gradient(270deg,#0f2027,#203a43,#2c5364);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
 overflow:hidden;
 color:#fff;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 /* PARTICLES */
 .particle{
 position:absolute;
-width:8px;
-height:8px;
+width:6px;
+height:6px;
 background:#fff;
 border-radius:50%;
 opacity:0.3;
-animation:floatUp 8s linear infinite;
+animation:floatUp linear infinite;
 }
 
 @keyframes floatUp{
@@ -47,12 +56,19 @@ to{transform:translateY(-10vh);}
 /* GLASS BOX */
 .container{
 text-align:center;
-padding:40px;
+padding:45px;
 border-radius:20px;
 background:rgba(255,255,255,0.08);
-backdrop-filter:blur(15px);
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
+backdrop-filter:blur(20px);
+box-shadow:0 25px 60px rgba(0,0,0,0.5);
+animation:fadeIn 1s ease;
 z-index:2;
+}
+
+/* ENTRY */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 /* 404 TEXT */
@@ -64,6 +80,7 @@ background:linear-gradient(90deg,#ff3b3f,#ff7a18);
 animation:glow 2s infinite alternate;
 }
 
+/* GLOW */
 @keyframes glow{
 from{filter:drop-shadow(0 0 10px #ff3b3f);}
 to{filter:drop-shadow(0 0 30px #ff7a18);}
@@ -85,15 +102,33 @@ margin-bottom:25px;
 display:inline-block;
 padding:12px 30px;
 border-radius:30px;
-background:#ff3b3f;
+background:linear-gradient(45deg,#ff3b3f,#ff7a18);
 color:#fff;
 text-decoration:none;
-transition:0.3s;
+transition:0.4s;
+position:relative;
+overflow:hidden;
+}
+
+/* BUTTON GLOW */
+.btn::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+transition:0.6s;
+}
+
+.btn:hover::before{
+left:100%;
 }
 
 .btn:hover{
-background:#ff7a18;
 transform:scale(1.1);
+box-shadow:0 10px 30px rgba(255,59,63,0.6);
 }
 
 /* COUNTDOWN */
@@ -101,6 +136,39 @@ transform:scale(1.1);
 margin-top:15px;
 font-size:14px;
 color:#aaa;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#0f2027;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.loader-box{
+width:200px;
+height:6px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.loader-bar{
+width:0%;
+height:100%;
+background:#ff3b3f;
+animation:load 1s linear forwards;
+}
+
+@keyframes load{
+to{width:100%;}
 }
 
 /* RESPONSIVE */
@@ -114,34 +182,39 @@ font-size:80px;
 </head>
 
 <body>
+
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-box">
     <div class="loader-bar"></div>
   </div>
-  <p>LOADING</p>
+  <p>Loading...</p>
 </div>
+
 <!-- PARTICLES -->
 <script>
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
   let p=document.createElement("div");
   p.className="particle";
   p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=(5+Math.random()*5)+"s";
+  p.style.animationDuration=(4+Math.random()*6)+"s";
+  p.style.width = p.style.height = (3 + Math.random()*5)+"px";
   document.body.appendChild(p);
 }
 </script>
 
+<!-- CONTENT -->
 <div class="container">
   <h1>404</h1>
-  <h2>Page Not Found</h2>
-  <p>The page you are looking for doesn't exist.</p>
+  <h2>Oops! Page Not Found</h2>
+  <p>The page you are looking for might have been removed or doesn't exist.</p>
 
   <a href="index.html" class="btn">Go Home</a>
 
   <div class="countdown">Redirecting in <span id="time">5</span>s...</div>
 </div>
 
+<!-- COUNTDOWN -->
 <script>
 let time=5;
 let timer=setInterval(()=>{
@@ -149,42 +222,38 @@ let timer=setInterval(()=>{
   document.getElementById("time").innerText=time;
   if(time==0){
     clearInterval(timer);
-    window.location.href="index.html";
+    document.body.style.opacity="0";
+    setTimeout(()=>{
+      window.location.href="index.html";
+    },400);
   }
 },1000);
 </script>
+
+<!-- LOADER SCRIPT -->
 <script>
 window.addEventListener("load", function(){
-  setTimeout(() => {
-    const loader = document.getElementById("loader");
-    loader.style.opacity = "0";
-    loader.style.transform = "scale(1.1)";
-    
-    setTimeout(()=>{
-      loader.style.display = "none";
-      document.body.classList.add("loaded");
-    },500);
-
-  }, 800);
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },800);
 });
 </script>
-<script>
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e){
-    const href = this.getAttribute("href");
 
-    // skip external or same page
+<!-- SMOOTH PAGE TRANSITION -->
+<script>
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",function(e){
+    const href=this.getAttribute("href");
     if(href && href.includes(".html")){
       e.preventDefault();
-
-      document.body.style.opacity = "0";
-
+      document.body.style.opacity="0";
       setTimeout(()=>{
-        window.location.href = href;
+        window.location.href=href;
       },400);
     }
   });
 });
 </script>
+
 </body>
 </html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gov Portal</title>
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+</head>
+<body>
+
+<div class="navbar">
+
+    <!-- LOGO -->
+    <a href="health.html" class="logo">
+        <img src="images/logo.webp" alt="logo">
+    </a>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU -->
+    <ul class="nav-links" id="navLinks">
+
+        <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">Home ▾</a>
+            <ul class="dropdown-content" id="dropdown">
+                <li><a href="home1.html">Home 1</a></li>
+            </ul>
+        </li>
+  <li><a href="about.html">About Us</a></li>
+        <li class="dropdown">
+  <a href="category.html
+  " onclick="toggleCategory(event)">Category ▾</a>
+
+  <ul class="dropdown-content" id="categoryDropdown">
+    <li><a href="news.html"><i class="fa fa-newspaper"></i> News</a></li>
+<li><a href="travel.html"><i class="fa fa-plane"></i> Travel</a></li>
+<li><a href="health.html"><i class="fa fa-heart"></i> Health</a></li>
+<li><a href="sports.html"><i class="fa fa-futbol"></i> Sports</a></li>
+  </ul>
+</li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="signin.html">Sign In</a></li>
+
+    </ul>
+</div>
+
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+/* HERO */
+.hero{
+height:75vh;
+background:url('./images/health.webp') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+position:relative;
+}
+
+/* OVERLAY */
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+top:0;
+left:0;
+}
+
+/* TEXT ABOVE */
+.hero div{
+position:relative;
+z-index:2;
+}
+
+.hero h1{
+font-size:55px;
+}
+
+.hero p{
+margin-top:10px;
+font-size:18px;
+}
+
+/* SECTION */
+.health-section{
+padding:60px 40px;
+background:#f4fff9;
+}
+
+/* TITLE */
+.section-title{
+text-align:center;
+font-size:36px;
+color:#00b894;
+margin-bottom:40px;
+}
+
+/* FEATURE BOX */
+.feature{
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+margin-bottom:50px;
+text-align:center;
+}
+
+.feature i{
+font-size:40px;
+color:#00b894;
+margin-bottom:10px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+/* CARD */
+.card{
+background:#fff;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* IMAGE */
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+/* CONTENT */
+.card-content{
+padding:15px;
+}
+
+.card-content h3{
+color:#00b894;
+margin-bottom:8px;
+}
+
+.card-content p{
+font-size:14px;
+color:#555;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+margin-top:10px;
+padding:6px 14px;
+background:#00b894;
+color:#fff;
+border-radius:20px;
+text-decoration:none;
+}
+
+/* HOVER EFFECT */
+.card:hover .btn{
+background:#019875;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+.grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px){
+.grid{grid-template-columns:1fr;}
+.hero h1{font-size:30px;}
+}
+
+</style>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div data-aos="fade-up">
+    <h1>💚 Health & Wellness</h1>
+    <p>Your guide to healthy living & better lifestyle</p>
+  </div>
+</section>
+
+<!-- SECTION -->
+<section class="health-section">
+
+<h1 class="section-title">Daily Health Tips</h1>
+
+<!-- FEATURE -->
+<div class="feature" data-aos="zoom-in">
+  <i class="fa fa-heart-pulse"></i>
+  <h2>Stay Fit, Stay Strong</h2>
+  <p>Maintain a healthy routine with balanced diet, exercise, and mindfulness.</p>
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+<!-- CARD 1 -->
+<div class="card" data-aos="fade-up">
+<img src="images/morning exercise.webp">
+<div class="card-content">
+<h3>Morning Exercise</h3>
+<p>Start your day with yoga or light workouts to stay active.</p>
+<a href="404.html" class="btn">Read</a>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="card" data-aos="fade-up" data-aos-delay="100">
+<img src="images/OIP.webp">
+<div class="card-content">
+<h3>Healthy Diet</h3>
+<p>Eat fruits, vegetables, and balanced meals daily.</p>
+<a href="#" class="btn">Read</a>
+</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="card" data-aos="fade-up" data-aos-delay="200">
+<img src="images/mental wiiness.webp">
+<div class="card-content">
+<h3>Mental Wellness</h3>
+<p>Practice meditation to reduce stress and anxiety.</p>
+<a href="#" class="btn">Read</a>
+</div>
+</div>
+
+<!-- CARD 4 -->
+<div class="card" data-aos="zoom-in">
+<img src="images/OIP (1).webp">
+<div class="card-content">
+<h3>Hydration</h3>
+<p>Drink enough water daily to stay energized.</p>
+<a href="#" class="btn">Read</a>
+</div>
+</div>
+
+<!-- CARD 5 -->
+<div class="card" data-aos="zoom-in" data-aos-delay="100">
+<img src="images/sleep-cycle-chart.webp">
+<div class="card-content">
+<h3>Sleep Cycle</h3>
+<p>Maintain proper sleep schedule for better health.</p>
+<a href="#" class="btn">Read</a>
+</div>
+</div>
+
+<!-- CARD 6 -->
+<div class="card" data-aos="zoom-in" data-aos-delay="200">
+<img src="images/Fitness-Trends.webp">
+<div class="card-content">
+<h3>Fitness Trends</h3>
+<p>Explore latest fitness routines and workouts.</p>
+<a href="#" class="btn">Read</a>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER START -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-wrapper">
+
+      <!-- LOGO -->
+      <div class="footer-col">
+        <img src="images/logo.webp" alt="Stackly Logo" class="footer-logo">
+        <p>
+           Magazine brings you latest news, health tips,
+          travel stories and sports updates.
+        </p>
+      </div>
+
+      <!-- LINKS -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="category.html">Category</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="footer-col">
+        <h3>Categories</h3>
+        <ul>
+         <li><a href="news.html">News</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="sports.html">Sports</a></li>
+          <li><a href="travel.html">Travel</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: info@stackly.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Location: India</p>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      <p> © 2026 Stackly. All Rights Reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer-logo{
+  width:150px;
+  transition:0.3s;
+}
+
+.footer-logo:hover{
+  transform:scale(1.05);
+}
+  .footer-logo{
+  width:150px;   /* adjust size */
+  margin-bottom:10px;
+}
+.footer{
+  background:#111;
+  color:#ccc;
+  padding:60px 0 20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.footer-wrapper{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+
+.logo{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.footer-col h3{
+  color:#fff;
+  margin-bottom:15px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-col ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-col ul li{
+  margin-bottom:8px;
+}
+
+.footer-col ul li a{
+  text-decoration:none;
+  color:#ccc;
+  transition:0.3s;
+}
+
+.footer-col ul li a:hover{
+  color:#ff3b3f;
+}
+
+.footer-bottom{
+  border-top:1px solid #222;
+  margin-top:40px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-wrapper{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:500px){
+  .footer-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+/* close dropdown when clicking outside */
+window.onclick = function(e) {
+    if (!e.target.closest(".dropdown")) {
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+</script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+duration:1000
+});
+</script>
+
+</body>
+</html>
