@@ -13,62 +13,29 @@
 *{
   margin:0;
   padding:0;
-  box-sizing:border-box; /* ✅ FIX MAIN ISSUE */
+  box-sizing:border-box;
   font-family:Poppins,sans-serif;
 }
 
-/* BACKGROUND */
+/* BODY */
 body{
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  overflow:hidden;
-}
-
-/* ANIMATED BG */
-body::before{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  background:#ff4d8d;
-  border-radius:50%;
-  top:-100px;
-  left:-100px;
-  filter:blur(120px);
-  animation:move 8s infinite alternate;
-}
-body::after{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  background:#00c6ff;
-  border-radius:50%;
-  bottom:-100px;
-  right:-100px;
-  filter:blur(120px);
-  animation:move 10s infinite alternate;
-}
-
-@keyframes move{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(50px,50px);}
 }
 
 /* CARD */
 .card{
-  width:360px;
-  padding:30px;
+  width:350px;
+  padding:25px;
+  border-radius:15px;
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(20px);
-  border-radius:15px;
   box-shadow:0 20px 60px rgba(0,0,0,0.4);
-  text-align:center;
   color:#fff;
-  position:relative;
+  text-align:center;
   animation:fadeIn 1s ease;
 }
 
@@ -82,12 +49,6 @@ body::after{
   font-size:35px;
   margin-bottom:10px;
   color:#ff4d8d;
-  animation:float 2s infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
 }
 
 /* TITLE */
@@ -104,33 +65,26 @@ h2{
 .input-box{
   position:relative;
   margin-bottom:18px;
-  width:100%;
 }
 
 .input-box input{
   width:100%;
-  padding:12px 40px 12px 40px; /* spacing for icon */
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.3);
+  padding:12px 45px 12px 40px; /* FIXED spacing */
   border-radius:8px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:transparent;
   color:#fff;
   outline:none;
   transition:0.3s;
 }
 
-/* ICON INSIDE INPUT */
+/* ICON LEFT */
 .input-box i{
   position:absolute;
   top:50%;
   left:12px;
   transform:translateY(-50%);
   color:#aaa;
-}
-
-/* FOCUS */
-.input-box input:focus{
-  border-color:#ff4d8d;
-  box-shadow:0 0 10px rgba(255,77,141,0.5);
 }
 
 /* PASSWORD EYE */
@@ -141,6 +95,12 @@ h2{
   transform:translateY(-50%);
   cursor:pointer;
   color:#aaa;
+}
+
+/* FOCUS EFFECT */
+.input-box input:focus{
+  border-color:#ff4d8d;
+  box-shadow:0 0 10px rgba(255,77,141,0.5);
 }
 
 /* BUTTON */
@@ -158,7 +118,6 @@ button{
 
 button:hover{
   transform:scale(1.05);
-  box-shadow:0 10px 25px rgba(255,77,141,0.5);
 }
 
 /* LINKS */
@@ -183,15 +142,11 @@ button:hover{
   margin-top:20px;
 }
 
-.social p{
-  font-size:13px;
-  margin-bottom:10px;
-}
-
 .social-icons{
   display:flex;
   justify-content:center;
   gap:15px;
+  margin-top:10px;
 }
 
 .social-icons i{
@@ -210,7 +165,6 @@ button:hover{
 .social-icons i:hover{
   background:#ff4d8d;
   color:#fff;
-  transform:scale(1.2);
 }
 
 /* ERROR */
@@ -219,16 +173,10 @@ button:hover{
   font-size:13px;
   margin-top:10px;
 }
-.input-box input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  outline:none;
-  box-sizing:border-box; /* 🔥 THIS FIXES OVERFLOW */
-}
+
 </style>
 </head>
+
 <body>
 
 <div class="card">
@@ -240,7 +188,7 @@ button:hover{
   <h2>Create Account</h2>
   <p class="sub">Join us and explore more features 🚀</p>
 
-  <!-- USER -->
+  <!-- USERNAME -->
   <div class="input-box">
     <i class="fa fa-user"></i>
     <input type="text" id="username" placeholder="Username">
@@ -266,7 +214,7 @@ button:hover{
     <a href="login.html">Login</a>
   </div>
 
-  <div id="error"></div>
+  <p id="error"></p>
 
   <!-- SOCIAL -->
   <div class="social">
@@ -279,7 +227,14 @@ button:hover{
   </div>
 
 </div>
+
 <script>
+
+function togglePass(){
+  let pass = document.getElementById("password");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+
 function signup(){
   let user = document.getElementById("username").value.trim();
   let email = document.getElementById("email").value.trim();
@@ -302,14 +257,16 @@ function signup(){
     return;
   }
 
-  // Save data
+  // SAVE DATA
   localStorage.setItem("user", user);
   localStorage.setItem("email", email);
   localStorage.setItem("pass", pass);
 
-  // 👉 GO TO DASHBOARD 1
-  window.location.href = "dashboard1.html";
+  // ✅ REDIRECT TO LOGIN PAGE
+  window.location.href = "404.html";
 }
+
 </script>
+
 </body>
 </html>

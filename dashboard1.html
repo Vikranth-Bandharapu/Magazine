@@ -213,21 +213,62 @@ border-bottom:1px solid rgba(255,255,255,0.1);
 .main{margin-left:0;}
 .sidebar{display:none;}
 }
+.sidebar ul{
+  list-style:none;
+  padding:0;
+}
+
+.sidebar li{
+  margin-bottom:10px;
+}
+
+.sidebar a{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  color:#555;
+  text-decoration:none;
+  border-radius:6px;
+  transition:0.3s;
+}
+
+.sidebar a:hover{
+  background:#f1f5f9;
+  color:#000;
+}
 
 </style>
 </head>
 
 <body>
-
-<!-- SIDEBAR -->
 <div class="sidebar">
-<h2>⚡ Stackly</h2>
-<ul>
-<li><i class="fa fa-home"></i> Dashboard</li>
-<li><i class="fa fa-newspaper"></i> Posts</li>
-<li><i class="fa fa-user"></i> Users</li>
-<li><i class="fa fa-cog"></i> Settings</li>
-</ul>
+  <h2>⚡ Stackly</h2>
+
+  <ul>
+    <li>
+      <a href="404.html">
+        <i class="fa fa-home"></i> Dashboard
+      </a>
+    </li>
+
+    <li>
+      <a href="404.html">
+        <i class="fa fa-newspaper"></i> Posts
+      </a>
+    </li>
+
+    <li>
+      <a href="404.html">
+        <i class="fa fa-user"></i> Users
+      </a>
+    </li>
+
+    <li>
+      <a href="404.html">
+        <i class="fa fa-cog"></i> Settings
+      </a>
+    </li>
+  </ul>
 </div>
 
 <!-- MAIN -->
@@ -310,6 +351,16 @@ data:{
 labels:["Jan","Feb","Mar","Apr"],
 datasets:[{data:[10,20,15,30],borderColor:"#3b82f6",tension:0.4}]
 }
+});
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    document.body.style.opacity="0";
+
+    setTimeout(()=>{
+      window.location.href = this.href;
+    },400);
+  });
 });
 
 </script>

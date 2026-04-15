@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Stackly Pro Login</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -13,11 +13,11 @@
 *{
   margin:0;
   padding:0;
-  box-sizing:border-box; /* 🔥 FIX OVERFLOW */
-  font-family:Poppins, sans-serif;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
 }
 
-/* BACKGROUND */
+/* BODY */
 body{
   height:100vh;
   display:flex;
@@ -31,56 +31,81 @@ body{
 body::before{
   content:"";
   position:absolute;
-  width:500px;
-  height:500px;
+  width:300px;
+  height:300px;
   background:#ff3b3f;
-  filter:blur(200px);
+  filter:blur(120px);
   top:-100px;
   left:-100px;
-  opacity:0.5;
+}
+
+body::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:#00c6ff;
+  filter:blur(120px);
+  bottom:-100px;
+  right:-100px;
 }
 
 /* CARD */
-.login-card{
+.card{
   width:360px;
-  padding:35px 25px;
-  border-radius:15px;
+  padding:30px;
+  border-radius:20px;
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(20px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
   color:#fff;
   animation:fadeIn 1s ease;
-  position:relative;
 }
 
-/* ENTRY ANIMATION */
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(40px);}
   to{opacity:1; transform:translateY(0);}
 }
 
-/* ICON */
-.icon{
-  font-size:40px;
-  margin-bottom:10px;
-  color:#ff3b3f;
-  animation:float 2s infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
-}
-
+/* TITLE */
 h2{
-  margin-bottom:5px;
+  text-align:center;
+}
+.sub{
+  text-align:center;
+  font-size:13px;
+  color:#ccc;
+  margin-bottom:20px;
 }
 
-.sub{
-  font-size:13px;
-  opacity:0.7;
-  margin-bottom:25px;
+/* TOGGLE */
+.toggle{
+  display:flex;
+  background:#1f2937;
+  border-radius:50px;
+  margin-bottom:20px;
+  position:relative;
+}
+
+.toggle span{
+  flex:1;
+  text-align:center;
+  padding:10px;
+  cursor:pointer;
+  z-index:2;
+}
+
+.slider{
+  position:absolute;
+  width:50%;
+  height:100%;
+  background:linear-gradient(45deg,#ff3b3f,#ff6b6b);
+  border-radius:50px;
+  transition:0.3s;
+}
+
+.admin-active .slider{
+  transform:translateX(100%);
 }
 
 /* INPUT */
@@ -92,48 +117,28 @@ h2{
 .input-box input{
   width:100%;
   padding:12px 40px;
+  border:none;
   border-radius:8px;
-  border:1px solid rgba(255,255,255,0.3);
-  background:transparent;
+  background:rgba(255,255,255,0.1);
   color:#fff;
   outline:none;
-  transition:0.3s;
 }
 
-/* ICON INSIDE INPUT */
 .input-box i{
   position:absolute;
-  top:50%;
   left:12px;
-  transform:translateY(-50%);
-  color:#ccc;
-}
-
-/* LABEL */
-.input-box label{
-  position:absolute;
   top:50%;
-  left:40px;
   transform:translateY(-50%);
-  color:#ccc;
-  font-size:14px;
-  transition:0.3s;
-  pointer-events:none;
+  color:#aaa;
 }
 
-/* FLOAT LABEL */
-.input-box input:focus + label,
-.input-box input:valid + label{
-  top:-8px;
-  left:10px;
-  font-size:12px;
-  color:#ff3b3f;
-}
-
-/* FOCUS EFFECT */
-.input-box input:focus{
-  border-color:#ff3b3f;
-  box-shadow:0 0 10px rgba(255,59,63,0.4);
+/* EYE */
+.eye{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
 }
 
 /* BUTTON */
@@ -151,14 +156,13 @@ button{
 
 button:hover{
   transform:scale(1.05);
-  box-shadow:0 10px 30px rgba(255,59,63,0.6);
 }
 
 /* LINKS */
 .links{
   display:flex;
   justify-content:space-between;
-  font-size:12px;
+  font-size:13px;
   margin-top:10px;
 }
 
@@ -168,37 +172,7 @@ button:hover{
 }
 
 .links a:hover{
-  color:#fff;
-}
-
-/* SOCIAL */
-.social{
-  margin-top:20px;
-}
-
-.social p{
-  font-size:13px;
-  margin-bottom:10px;
-  opacity:0.7;
-}
-
-.social-icons{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-}
-
-.social-icons i{
-  background:rgba(255,255,255,0.1);
-  padding:10px;
-  border-radius:50%;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.social-icons i:hover{
-  background:#ff3b3f;
-  transform:scale(1.1);
+  color:#ff3b3f;
 }
 
 /* ERROR */
@@ -207,92 +181,88 @@ button:hover{
   font-size:13px;
   margin-top:10px;
 }
-.input-box input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  outline:none;
-  box-sizing:border-box; /* 🔥 THIS FIXES OVERFLOW */
-}
 
 </style>
 </head>
+
 <body>
 
-<div class="login-card">
-
-  <div class="icon">
-    <i class="fa fa-user-circle"></i>
-  </div>
+<div class="card">
 
   <h2>Welcome Back</h2>
-  <p class="sub">Login to continue</p>
+  <p class="sub">Login to Stackly 🚀</p>
 
-  <!-- USERNAME -->
-  <div class="input-box">
-    <i class="fa fa-user"></i>
-    <input type="text" id="username" required>
-    <label>Username</label>
+  <!-- TOGGLE -->
+  <div class="toggle" id="toggle">
+    <div class="slider"></div>
+    <span onclick="setUser()">User</span>
+    <span onclick="setAdmin()">Admin</span>
   </div>
 
   <!-- EMAIL -->
   <div class="input-box">
     <i class="fa fa-envelope"></i>
-    <input type="email" id="email" required>
-    <label>Email</label>
+    <input type="email" id="email" placeholder="Email">
   </div>
 
   <!-- PASSWORD -->
   <div class="input-box">
     <i class="fa fa-lock"></i>
-    <input type="password" id="password" required>
-    <label>Password</label>
+    <input type="password" id="password" placeholder="Password">
+    <i class="fa fa-eye eye" onclick="togglePass()"></i>
   </div>
 
   <button onclick="login()">Login</button>
 
   <div class="links">
-    <a href="404.html">Forgot Password?</a>
-    <a href="signin.html">Sign Up</a>
-  </div>
-
-  <div class="social">
-    <p>Or login with</p>
-    <div class="social-icons">
-      <i class="fab fa-google"></i>
-      <i class="fab fa-facebook-f"></i>
-      <i class="fab fa-github"></i>
-    </div>
+    <a href="404.html">Forgot?</a>
+    <a href="signin.html">Register</a>
   </div>
 
   <p id="error"></p>
 
 </div>
+
 <script>
+
+let role = "user";
+
+function setUser(){
+  role = "user";
+  document.getElementById("toggle").classList.remove("admin-active");
+}
+
+function setAdmin(){
+  role = "admin";
+  document.getElementById("toggle").classList.add("admin-active");
+}
+
+function togglePass(){
+  let pass = document.getElementById("password");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+
 function login(){
-  let user = document.getElementById("username").value.trim();
   let email = document.getElementById("email").value.trim();
   let pass = document.getElementById("password").value.trim();
 
-  let savedUser = localStorage.getItem("user");
-  let savedEmail = localStorage.getItem("email");
-  let savedPass = localStorage.getItem("pass");
-
-  if(user === "" || email === "" || pass === ""){
-    document.getElementById("error").innerText = "All fields are required!";
+  if(email === "" || pass === ""){
+    document.getElementById("error").innerText = "All fields required!";
     return;
   }
 
-  if(user === savedUser && email === savedEmail && pass === savedPass){
-    
-    // 👉 GO TO DASHBOARD 2
-    window.location.href = "dashboard2.html";
+  // 🔥 SAVE ROLE
+  localStorage.setItem("role", role);
 
+  // 🔥 REDIRECT
+  if(role === "user"){
+    window.location.href = "dashboard1.html";
   } else {
-    document.getElementById("error").innerText = "Invalid credentials!";
+    window.location.href = "dashboard2.html";
   }
 }
+
 </script>
+
 </body>
 </html>
