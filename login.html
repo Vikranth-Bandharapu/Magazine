@@ -284,9 +284,11 @@ function login(){
     return;
   }
 
-  // ✅ CHECK MATCH
   if(user === savedUser && email === savedEmail && pass === savedPass){
-    window.location.href = "dashboard.html";
+    
+    // 👉 GO TO DASHBOARD 2
+    window.location.href = "dashboard2.html";
+
   } else {
     document.getElementById("error").innerText = "Invalid credentials!";
   }

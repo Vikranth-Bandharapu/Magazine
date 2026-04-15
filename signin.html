@@ -302,15 +302,14 @@ function signup(){
     return;
   }
 
-  // ✅ SAVE DATA (for login use)
+  // Save data
   localStorage.setItem("user", user);
   localStorage.setItem("email", email);
   localStorage.setItem("pass", pass);
 
-  // ✅ REDIRECT TO LOGIN
-  window.location.href = "login.html";
+  // 👉 GO TO DASHBOARD 1
+  window.location.href = "dashboard1.html";
 }
 </script>
-
 </body>
 </html>

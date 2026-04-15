@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* GLOBAL */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(270deg,#1e3c72,#2a5298,#6a11cb,#2575fc);
+background-size:800% 800%;
+animation:bgMove 12s ease infinite;
+color:#fff;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* NAVBAR */
+.navbar{
+position:sticky;
+top:10px;
+margin:15px;
+border-radius:15px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+z-index:100;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.nav-links a{
+color:#ddd;
+text-decoration:none;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#fff;
+transform:translateY(-2px);
+}
+
+/* MAIN */
+.main{
+padding:20px 40px;
+}
+
+/* TOPBAR */
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* SEARCH */
+.search{
+background:rgba(255,255,255,0.15);
+padding:10px 15px;
+border-radius:10px;
+backdrop-filter:blur(10px);
+}
+
+.search input{
+border:none;
+background:transparent;
+color:#fff;
+outline:none;
+}
+
+/* PROFILE */
+.profile{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.profile img{
+width:45px;
+border-radius:50%;
+border:2px solid #fff;
+}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:20px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:0.4s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+transition:0.6s;
+}
+
+.card:hover::before{left:100%;}
+.card:hover{
+transform:translateY(-12px) scale(1.05);
+}
+
+.card h3{
+font-size:28px;
+}
+
+/* FEATURE */
+.feature{
+margin-top:40px;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.feature-big{
+height:260px;
+background:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c') center/cover;
+border-radius:15px;
+display:flex;
+align-items:flex-end;
+padding:20px;
+position:relative;
+overflow:hidden;
+}
+
+.feature-big::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+
+.feature-big h2{
+position:relative;
+z-index:2;
+animation:fadeUp 1.2s ease;
+}
+
+.feature-small{
+display:grid;
+gap:20px;
+}
+
+.small-box{
+background:rgba(255,255,255,0.15);
+padding:15px;
+border-radius:12px;
+transition:0.3s;
+}
+
+.small-box:hover{
+transform:translateX(8px);
+}
+
+/* ANALYTICS */
+.analytics{
+margin-top:40px;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.chart-box{
+background:rgba(255,255,255,0.15);
+padding:20px;
+border-radius:15px;
+}
+
+/* TRENDING */
+.trending{
+margin-top:40px;
+}
+
+.trending ul{
+list-style:none;
+}
+
+.trending li{
+background:rgba(255,255,255,0.15);
+margin-bottom:10px;
+padding:12px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+transition:0.3s;
+}
+
+.trending li:hover{
+transform:translateX(10px);
+}
+
+/* TABLE */
+.table{
+margin-top:40px;
+}
+
+table{
+width:100%;
+background:rgba(255,255,255,0.15);
+border-radius:10px;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+}
+
+.status{
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.pub{background:#22c55e;}
+.draft{background:#ef4444;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.cards{grid-template-columns:repeat(2,1fr);}
+.feature{grid-template-columns:1fr;}
+.analytics{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<h2>Magazine Pro</h2>
+
+<ul class="nav-links">
+<li><a href="#">Dashboard</a></li>
+<li><a href="#">Articles</a></li>
+<li><a href="#">Categories</a></li>
+<li><a href="#">Analytics</a></li>
+</ul>
+</div>
+
+<div class="main">
+
+<!-- TOPBAR -->
+<div class="topbar">
+<div class="search">
+<input type="text" placeholder="Search...">
+</div>
+
+<div class="profile">
+<span>Admin</span>
+<img src="https://i.pravatar.cc/100">
+</div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+<div class="card"><h3 id="c1">0</h3><p>Total Articles</p></div>
+<div class="card"><h3 id="c2">0</h3><p>Published</p></div>
+<div class="card"><h3 id="c3">0</h3><p>Drafts</p></div>
+<div class="card"><h3 id="c4">0</h3><p>Readers</p></div>
+</div>
+
+<!-- FEATURE -->
+<div class="feature">
+<div class="feature-big">
+<h2>🔥 Breaking News: India Growth Rising</h2>
+</div>
+
+<div class="feature-small">
+<div class="small-box">✈ Travel Trends 2026</div>
+<div class="small-box">💊 Health Daily Tips</div>
+</div>
+</div>
+
+<!-- ANALYTICS -->
+<div class="analytics">
+<div class="chart-box">
+<canvas id="chart1"></canvas>
+</div>
+<div class="chart-box">
+<canvas id="chart2"></canvas>
+</div>
+</div>
+
+<!-- TRENDING -->
+<div class="trending">
+<h3>🔥 Trending</h3>
+<ul>
+<li>India GDP Growth <span>🔥</span></li>
+<li>Travel 2026 <span>🔥</span></li>
+<li>Health Tips <span>🔥</span></li>
+</ul>
+</div>
+
+<!-- TABLE -->
+<div class="table">
+<table>
+<tr><th>Title</th><th>Category</th><th>Status</th></tr>
+<tr><td>India Economy</td><td>News</td><td><span class="status pub">Published</span></td></tr>
+<tr><td>Healthy Life</td><td>Health</td><td><span class="status draft">Draft</span></td></tr>
+</table>
+</div>
+
+</div>
+
+<!-- JS -->
+<script>
+function animate(id,target){
+let num=0;
+let interval=setInterval(()=>{
+num+=Math.ceil(target/30);
+if(num>=target){num=target;clearInterval(interval);}
+document.getElementById(id).innerText=num;
+},40);
+}
+animate("c1",150);
+animate("c2",90);
+animate("c3",60);
+animate("c4",12000);
+</script>
+
+<script>
+new Chart(document.getElementById("chart1"),{
+type:'line',
+data:{labels:["Jan","Feb","Mar","Apr"],datasets:[{data:[10,30,20,40]}]}
+});
+
+new Chart(document.getElementById("chart2"),{
+type:'doughnut',
+data:{labels:["News","Health","Travel"],datasets:[{data:[40,30,20]}]}
+});
+</script>
+
+</body>
+</html>
