@@ -113,10 +113,9 @@ h2{
   position:relative;
   margin-bottom:18px;
 }
-
 .input-box input{
   width:100%;
-  padding:12px 40px;
+  padding:12px 40px; /* normal padding */
   border:none;
   border-radius:8px;
   background:rgba(255,255,255,0.1);
@@ -135,10 +134,19 @@ h2{
 /* EYE */
 .eye{
   position:absolute;
-  right:12px;
+  right:15px;
   top:50%;
   transform:translateY(-50%);
   cursor:pointer;
+  color:#bbb;
+  transition:0.3s;
+}
+
+.eye:hover{
+  color:#fff;
+}
+.input-box input{
+  cursor:text;   /* 🔥 always text cursor */
 }
 
 /* BUTTON */
@@ -209,7 +217,7 @@ button:hover{
   <div class="input-box">
     <i class="fa fa-lock"></i>
     <input type="password" id="password" placeholder="Password">
-    <i class="fa fa-eye eye" onclick="togglePass()"></i>
+    
   </div>
 
   <button onclick="login()">Login</button>
@@ -237,10 +245,6 @@ function setAdmin(){
   document.getElementById("toggle").classList.add("admin-active");
 }
 
-function togglePass(){
-  let pass = document.getElementById("password");
-  pass.type = pass.type === "password" ? "text" : "password";
-}
 
 function login(){
   let email = document.getElementById("email").value.trim();

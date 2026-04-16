@@ -66,10 +66,9 @@ h2{
   position:relative;
   margin-bottom:18px;
 }
-
 .input-box input{
   width:100%;
-  padding:12px 45px 12px 40px; /* FIXED spacing */
+  padding:12px 40px;  /* clean spacing */
   border-radius:8px;
   border:1px solid rgba(255,255,255,0.3);
   background:transparent;
@@ -87,15 +86,7 @@ h2{
   color:#aaa;
 }
 
-/* PASSWORD EYE */
-.eye{
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%);
-  cursor:pointer;
-  color:#aaa;
-}
+
 
 /* FOCUS EFFECT */
 .input-box input:focus{
@@ -204,7 +195,7 @@ button:hover{
   <div class="input-box">
     <i class="fa fa-lock"></i>
     <input type="password" id="password" placeholder="Password">
-    <i class="fa fa-eye eye" onclick="togglePass()"></i>
+   
   </div>
 
   <button onclick="signup()">Sign Up</button>
@@ -219,21 +210,18 @@ button:hover{
   <!-- SOCIAL -->
   <div class="social">
     <p>Or sign in with</p>
-    <div class="social-icons">
-      <i class="fab fa-google"></i>
-      <i class="fab fa-facebook-f"></i>
-      <i class="fab fa-github"></i>
-    </div>
+   <div class="social-icons">
+  <a href="404.html"><i class="fab fa-google"></i></a>
+  <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+  <a href="404.html"><i class="fab fa-github"></i></a>
+</div>
   </div>
 
 </div>
 
 <script>
 
-function togglePass(){
-  let pass = document.getElementById("password");
-  pass.type = pass.type === "password" ? "text" : "password";
-}
+
 
 function signup(){
   let user = document.getElementById("username").value.trim();
@@ -265,8 +253,20 @@ function signup(){
   // ✅ REDIRECT TO LOGIN PAGE
   window.location.href = "404.html";
 }
+document.querySelectorAll(".social-icons a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    document.body.style.opacity="0";
 
+    setTimeout(()=>{
+      window.location.href = this.href;
+    },300);
+  });
+});
 </script>
+
+
+
 
 </body>
 </html>
