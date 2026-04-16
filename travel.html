@@ -86,28 +86,46 @@ align-items:center;
 justify-content:center;
 position:relative;
 }
-
 .hero::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.5)
+  );
 }
 
 .hero-content{
-position:relative;
-color:#fff;
-text-align:center;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
 }
 
+/* 🔥 HEADING IMPROVED */
 .hero-content h1{
-font-size:50px;
+  font-size: 55px;
+  font-weight: 700;
+
+  color: #fff;
+
+  text-shadow:
+    0 0 10px rgba(0,0,0,0.8),
+    0 0 20px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,0,0,0.5);
 }
 
+/* 🔥 PARAGRAPH IMPROVED */
 .hero-content p{
-margin-top:10px;
-font-size:18px;
+  margin-top: 15px;
+  font-size: 20px;
+
+  color: #f1f1f1;
+
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
 
 /* SECTION */
@@ -255,7 +273,15 @@ grid-template-columns:1fr;
 font-size:30px;
 }
 }
+.overlay i{
+  cursor:pointer;
+  transition:0.3s;
+}
 
+.overlay i:hover{
+  transform:scale(1.2);
+  background:#019875;
+}
 </style>
 </head>
 
@@ -280,7 +306,10 @@ font-size:30px;
 <div class="big-card" data-aos="fade-right">
 <div class="img-box">
 <img src="images/Travel12_11zon_11zon.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div>
 <span class="badge">Travel</span>
 </div>
 <div class="card-content">
@@ -295,7 +324,10 @@ font-size:30px;
 <div class="big-card" data-aos="fade-left">
 <div class="img-box">
 <img src="images/travel5.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div>
 <span class="badge">Travel</span>
 </div>
 <div class="card-content">
@@ -303,7 +335,7 @@ font-size:30px;
 <p>Enjoy beaches, parties, and vibrant nightlife in Goa.</p>
 <div class="meta"><span>Admin</span><span>3 days ago</span></div>
 <div class="stats"><span>3k Views</span><span>150 Comments</span></div>
-<a href="#" class="read-btn">Explore</a>
+<a href="404.html" class="read-btn">Explore</a>
 </div>
 </div>
 
@@ -315,30 +347,34 @@ font-size:30px;
 <div class="big-card" data-aos="zoom-in">
 <div class="img-box">
 <img src="images/travel8.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
-<span class="badge">Travel</span>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div><span class="badge">Travel</span>
 </div>
 <div class="card-content">
 <h2>Kerala Backwaters</h2>
 <p>Relax in houseboats and enjoy scenic backwaters.</p>
 <div class="meta"><span>Admin</span><span>1 week ago</span></div>
 <div class="stats"><span>2k Views</span><span>100 Comments</span></div>
-<a href="#" class="read-btn">Explore</a>
+<a href="404.html" class="read-btn">Explore</a>
 </div>
 </div>
 
 <div class="big-card" data-aos="flip-left">
 <div class="img-box">
 <img src="images/travel 2.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
-<span class="badge">Travel</span>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div><span class="badge">Travel</span>
 </div>
 <div class="card-content">
 <h2>Ladakh Road Trip</h2>
 <p>Adventure ride through mountains and stunning landscapes.</p>
 <div class="meta"><span>Admin</span><span>5 days ago</span></div>
 <div class="stats"><span>4k Views</span><span>300 Comments</span></div>
-<a href="#" class="read-btn">Explore</a>
+<a href="404.html" class="read-btn">Explore</a>
 </div>
 </div>
 
@@ -350,30 +386,34 @@ font-size:30px;
 <div class="big-card" data-aos="fade-up">
 <div class="img-box">
 <img src="images/travel6.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
-<span class="badge">Travel</span>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div><span class="badge">Travel</span>
 </div>
 <div class="card-content">
 <h2>Andaman Islands</h2>
 <p>Crystal clear water and beach paradise experience.</p>
 <div class="meta"><span>Admin</span><span>6 days ago</span></div>
 <div class="stats"><span>3.5k Views</span><span>220 Comments</span></div>
-<a href="#" class="read-btn">Explore</a>
+<a href="404.html" class="read-btn">Explore</a>
 </div>
 </div>
 
 <div class="big-card" data-aos="zoom-in-up">
 <div class="img-box">
 <img src="images/travel.webp">
-<div class="overlay"><i class="fa fa-eye"></i><i class="fa fa-share"></i></div>
-<span class="badge">Travel</span>
+<div class="overlay">
+  <i class="fa fa-eye" onclick="window.location.href='404.html'"></i>
+  <i class="fa fa-share" onclick="window.location.href='404.html'"></i>
+</div><span class="badge">Travel</span>
 </div>
 <div class="card-content">
 <h2>Coorg Road Trip</h2>
 <p>Enjoy green hills, coffee estates & peaceful vibes.</p>
 <div class="meta"><span>Admin</span><span>2 days ago</span></div>
 <div class="stats"><span>1.8k Views</span><span>90 Comments</span></div>
-<a href="#" class="read-btn">Explore</a>
+<a href="404.html" class="read-btn">Explore</a>
 </div>
 </div>
 

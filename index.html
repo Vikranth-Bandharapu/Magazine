@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
 <!-- LOADER -->
@@ -310,14 +311,34 @@ body{margin:0;font-family:Arial,sans-serif;background:#f8f9fa;}
 .filter-buttons{margin-top:10px;}
 .filter-buttons button{border:none;background:#ddd;padding:8px 15px;margin-left:10px;border-radius:5px;cursor:pointer;transition:all 0.3s;font-weight:bold;}
 .filter-buttons button.active,.filter-buttons button:hover{background:#ff3b3f;color:#fff;}
-.news-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;}
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+  gap:30px;
+}
 @media(max-width:1200px){.news-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:600px){.news-grid{grid-template-columns:1fr;}}
 .news-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;position:relative;}
 .news-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.2);}
 .news-card .image{position:relative;overflow:hidden;}
-.news-card .image img{width:100%;height:180px;object-fit:cover;transition:transform 0.5s;}
+.news-card .image img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+.news-card{
+  min-height:380px;
+  border-radius:20px;
+}
+.news-card .news-text h3{
+  font-size:1.4rem;
+  font-weight:600;
+}
+
+.news-card .news-text p{
+  font-size:1rem;
+}
 .news-card:hover .image img{transform:scale(1.1);}
 .news-card .badge{position:absolute;top:15px;left:15px;background:#ff3b3f;color:#fff;padding:5px 10px;font-size:0.8rem;border-radius:5px;font-weight:bold;}
 .news-card .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);opacity:0;display:flex;justify-content:center;align-items:center;gap:15px;transition:opacity 0.4s;}
@@ -518,167 +539,286 @@ body{margin:0;font-family:Arial,sans-serif;background:#f8f9fa;}
     </div>
   </div>
 </section>
-<section class="pro-news-section">
-  <div class="container">
-    
-    <div class="section-header" data-aos="fade-down">
-      <h2>Trending Highlights</h2>
-      <p>Top stories you should not miss</p>
-    </div>
+<section class="modern-section">
+  <h2 class="section-title">🔥 Trending Now</h2>
 
-    <!-- HORIZONTAL SLIDER -->
-    <div class="swiper myNewsSlider">
-      <div class="swiper-wrapper">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
 
-        <!-- Card 1 -->
-        <div class="swiper-slide">
-          <div class="pro-card">
-            <img src="images/air india_11zon_11zon.webp">
-            <span class="tag">Travel</span>
-            <div class="content">
-              <h3>Air India seeks $1.14B lifeline from Tata</h3>
-              <p>Reuters • 3 days ago</p>
-            </div>
+      <div class="swiper-slide">
+        <div class="glass-card">
+          <img src="images/new10.webp">
+          <div class="card-content">
+            <h3>Breaking News</h3>
+            <p>Latest updates happening now</p>
           </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="swiper-slide">
-          <div class="pro-card">
-            <img src="images/Ford_11zon_11zon_11zon.webp">
-            <span class="tag">News</span>
-            <div class="content">
-              <h3>Ford invests $370M in India expansion</h3>
-              <p>Reuters • 3 days ago</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="swiper-slide">
-          <div class="pro-card">
-            <img src="images/atheletes_11zon_11zon.webp">
-            <span class="tag">Sports</span>
-            <div class="content">
-              <h3>Olympic training camps intensify</h3>
-              <p>The Hindu • Yesterday</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="swiper-slide">
-          <div class="pro-card">
-            <img src="images/Health12_11zon_11zon_11zon.webp">
-            <span class="tag">Health</span>
-            <div class="content">
-              <h3>Healthy lifestyle tips trending now</h3>
-              <p>India Today • Today</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="swiper-slide">
-          <div class="pro-card">
-            <img src="images/fitness_11zon_11zon.webp">
-            <span class="tag">Fitness</span>
-            <div class="content">
-              <h3>Fit India 2.0 campaign growing fast</h3>
-              <p>ET • 2 days ago</p>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
+      <div class="swiper-slide">
+        <div class="glass-card">
+          <img src="images/Travel12_11zon_11zon.webp">
+          <div class="card-content">
+            <h3>Travel Diaries</h3>
+            <p>Explore beautiful places</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="glass-card">
+          <img src="images/health visual data_11zon_11zon_11zon.webp">
+          <div class="card-content">
+            <h3>Health Tips</h3>
+            <p>Stay fit and active</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="glass-card">
+          <img src="images/sport.webp">
+          <div class="card-content">
+            <h3>Sports Update</h3>
+            <p>Live match highlights</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
-
-<!-- CSS -->
 <style>
-.myNewsSlider {
-  width: 100%;
-  padding: 40px 0;
+/* ===== MODERN SECTION ===== */
+.modern-section {
+  padding: 60px 20px;
+  background: linear-gradient(to right, #0f172a, #1e293b);
 }
 
-.swiper-wrapper {
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+/* HORIZONTAL SCROLL */
+.scroll-container {
   display: flex;
-  align-items: center;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
 }
 
-.swiper-slide {
-  width: 320px !important;   /* 🔥 Bigger cards */
-  height: 220px;
+.scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
-.pro-card {
-  position: relative;
+/* GLASS CARD */
+.glass-card {
+  min-width: 280px;
+  height: 350px;
   border-radius: 20px;
   overflow: hidden;
-  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  transition: 0.4s;
   cursor: pointer;
 }
 
-.pro-card img {
+/* IMAGE */
+.glass-card img {
   width: 100%;
-  height: 100%;
+  height: 60%;
   object-fit: cover;
-  transition: transform 0.6s;
 }
 
-/* 🔥 DARK OVERLAY */
-.pro-card::after {
-  content: "";
-  position: absolute;
+/* TEXT */
+.glass-card h3 {
+  color: #111;   /* DARK TEXT */
+  margin: 10px;
+  font-size: 1.3rem;
+}
+
+.glass-card p {
+  color: #333;   /* DARK TEXT */
+  margin: 0 10px;
+  font-size: 0.9rem;
+}
+
+/* HOVER EFFECT */
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* SCROLL SNAP (PRO FEEL) */
+.scroll-container {
+  scroll-snap-type: x mandatory;
+}
+
+.glass-card {
+  scroll-snap-align: start;
+}
+/* SECTION */
+.modern-section {
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* SWIPER */
+.mySwiper {
+  padding: 20px;
+}
+
+/* GLASS CARD */
+.glass-card {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  transition: 0.5s;
+}
+
+/* IMAGE */
+.glass-card img {
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* CONTENT OVERLAY */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
 }
 
-/* 🔥 TEXT ON IMAGE */
-.pro-card .content {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
+/* TEXT FIX (VISIBLE NOW 🔥) */
+.card-content h3 {
   color: #fff;
-  z-index: 2;
+  font-size: 1.4rem;
 }
 
-.pro-card .content h3 {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
+.card-content p {
+  color: #ddd;
+  font-size: 0.9rem;
 }
 
-.pro-card .content p {
-  font-size: 0.8rem;
-  opacity: 0.8;
+/* HOVER ANIMATION */
+.glass-card:hover {
+  transform: scale(1.08) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-/* 🔥 CATEGORY TAG */
-.pro-card .tag {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #ff3b3f;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  z-index: 2;
+/* SWIPER SLIDE ANIMATION */
+.swiper-slide {
+  transition: 0.5s;
 }
 
-/* 🔥 HOVER EFFECT */
-.pro-card:hover img {
-  transform: scale(1.1);
+.swiper-slide-active {
+  transform: scale(1.05);
+}
+</style>
+
+<!-- CSS -->
+<style>
+/* SLIDER SIZE CONTROL */
+.swiper-slide{
+  width:280px !important; /* ✅ prevents shrinking */
+}
+/* 🔥 FIXED TRENDING CARDS */
+.pro-card{
+  position:relative;
+  width:100%;
+  height:280px; /* ✅ increased height */
+  border-radius:15px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:0.4s;
 }
 
-.pro-card:hover {
-  transform: translateY(-8px);
-  transition: 0.3s;
+.pro-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.5s;
+}
+
+/* DARK OVERLAY FOR TEXT VISIBILITY */
+.pro-card::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.1));
+}
+
+/* TEXT CONTENT */
+.pro-card .content{
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  right:15px;
+  color:#fff;
+  z-index:2;
+}
+
+/* TITLE */
+.pro-card .content h3{
+  font-size:16px;
+  margin-bottom:5px;
+  line-height:1.4;
+}
+
+/* SUBTEXT */
+.pro-card .content p{
+  font-size:13px;
+  opacity:0.85;
+}
+
+/* CATEGORY TAG */
+.pro-card .tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:#ff3b3f;
+  color:#fff;
+  padding:5px 10px;
+  font-size:12px;
+  border-radius:5px;
+  z-index:2;
+}
+
+/* HOVER EFFECT */
+.pro-card:hover img{
+  transform:scale(1.1);
+}
+
+.pro-card:hover{
+  transform:translateY(-8px);
 }
 </style>
 
@@ -843,99 +983,6 @@ var swiper = new Swiper(".myNewsSlider", {
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-<style>
-.pro-news-section {
-  padding: 80px 20px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.section-header h2 {
-  font-size: 38px;
-  color: #ff3b3f;
-}
-
-/* Card */
-.pro-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.5s;
-  transform-style: preserve-3d;
-}
-
-.pro-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: 0.5s;
-}
-
-/* Overlay */
-.pro-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-}
-
-/* Content */
-.pro-card .content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: #fff;
-  z-index: 2;
-}
-
-.pro-card h3 {
-  font-size: 18px;
-}
-
-/* Tag */
-.tag {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #ff3b3f;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  z-index: 2;
-}
-
-/* Hover animation */
-.pro-card:hover img {
-  transform: scale(1.1);
-}
-
-/* 3D Tilt */
-.pro-card:hover {
-  transform: rotateY(8deg) rotateX(6deg) scale(1.05);
-}
-
-/* Swiper spacing */
-.swiper-slide {
-  width: 300px;
-}
-
-/* Responsive */
-@media(max-width:768px){
-  .swiper-slide {
-    width: 250px;
-  }
-}
-</style>
 
 <script>
 AOS.init();
@@ -1339,7 +1386,8 @@ window.addEventListener('resize',()=>{
 .pro-card h3 {
   font-size: 1rem;
   margin-bottom: 5px;
-  color: #111;
+color: #fff;
+background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   transition: color 0.3s;
 }
 
@@ -1493,6 +1541,60 @@ topicCards.forEach(card => {
 /* Responsive */
 @media(max-width:1024px){.featured-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:768px){.featured-grid{grid-template-columns:1fr;}}
+
+.filter-buttons button:hover{
+  transform:scale(1.1);
+  transition:0.3s;
+}
+.mySwiper {
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* 🔥 THIS CONTROLS HOW MANY CARDS SHOW */
+.swiper-slide {
+  width: 300px !important;  /* 4 cards fit automatically */
+  display: flex;
+  justify-content: center;
+}
+.glass-card:hover {
+  transform: scale(1.15) translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+}
+
+/* SMOOTH TRANSITION */
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+/* CARD HOVER EFFECT */
+.glass-card {
+  transition: 0.4s;
+}
+
+.glass-card:hover {
+  transform: scale(1.12);
+  z-index: 10;
+}
+
+/* DIM SIDE CARDS (LIKE NETFLIX) */
+.swiper-slide {
+  opacity: 0.5;
+  transition: 0.4s;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+}
+
+/* CURSOR */
+.mySwiper {
+  cursor: grab;
+}
+
+.mySwiper:active {
+  cursor: grabbing;
+}
 </style>
 
 
@@ -1513,8 +1615,29 @@ window.addEventListener('scroll', () => {
 <script>
 AOS.init({duration:1000});
 </script>
+<script>
+var swiper = new Swiper(".mySwiper", {
+  loop: true,
+  slidesPerView: "auto",
+  spaceBetween: 30,
 
+  speed: 6000,
 
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: false,
+  },
+
+  freeMode: true,
+  freeModeMomentum: true,   // 🔥 momentum effect
+  freeModeMomentumRatio: 0.5,
+  freeModeMomentumVelocityRatio: 0.5,
+
+  grabCursor: true, // 🔥 mouse drag feel
+
+  centeredSlides: true,
+});
+</script>
 <script>
 function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("active");
@@ -1703,7 +1826,29 @@ function toggleDropdown(e) {
 }
 </script>
 
-
+<script>
+document.querySelectorAll(".filter-buttons button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    window.location.href = "404.html";
+  });
+});
+</script>
+<script>
+var swiper = new Swiper(".myNewsSlider", {
+  slidesPerView: "auto",   // 🔥 IMPORTANT
+  spaceBetween: 20,
+  loop: true,
+  autoplay:{
+    delay:2500,
+    disableOnInteraction:false
+  }
+});
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
 
